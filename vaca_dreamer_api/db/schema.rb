@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_14_154542) do
+ActiveRecord::Schema.define(version: 2019_12_14_160914) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "vacation_id"
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 2019_12_14_154542) do
     t.string "state"
     t.string "country"
     t.boolean "family_friendly"
+    t.string "cost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "cost"
-    t.string "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x00007fd340efe4d8>"
+    t.string "address"
     t.index ["vacation_id"], name: "index_stays_on_vacation_id"
   end
 

@@ -6,7 +6,7 @@ class CreateActivities < ActiveRecord::Migration[6.0]
       t.text :description
       t.string :address
       t.string :city
-      t.string :cost # string because it will be '$', '$$', '$$$', '$$$$', '$$$$$'
+      t.string :cost
       t.boolean :family_friendly
 
       t.timestamps

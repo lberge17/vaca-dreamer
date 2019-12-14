@@ -7,7 +7,7 @@ class CreateStays < ActiveRecord::Migration[6.0]
       t.string :state
       t.string :country
       t.boolean :family_friendly
-      t.string :cost, # string because it will be '$', '$$', '$$$', '$$$$', '$$$$$'
+      t.string :cost
 
       t.timestamps
     end
