@@ -25,18 +25,18 @@ class StaysController < ApplicationController
   end
 
   # PATCH/PUT /stays/1
-  def update
-    if @stay.update(stay_params)
-      render json: @stay
-    else
-      render json: @stay.errors, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @stay.update(stay_params)
+  #     render json: @stay
+  #   else
+  #     render json: @stay.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # DELETE /stays/1
-  def destroy
-    @stay.destroy
-  end
+  # # DELETE /stays/1
+  # def destroy
+  #   @stay.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -25,18 +25,18 @@ class ActivitiesController < ApplicationController
   end
 
   # PATCH/PUT /activities/1
-  def update
-    if @activity.update(activity_params)
-      render json: @activity
-    else
-      render json: @activity.errors, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @activity.update(activity_params)
+  #     render json: @activity
+  #   else
+  #     render json: @activity.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # DELETE /activities/1
-  def destroy
-    @activity.destroy
-  end
+  # # DELETE /activities/1
+  # def destroy
+  #   @activity.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

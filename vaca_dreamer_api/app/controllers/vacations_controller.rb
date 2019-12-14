@@ -25,18 +25,18 @@ class VacationsController < ApplicationController
   end
 
   # PATCH/PUT /vacations/1
-  def update
-    if @vacation.update(vacation_params)
-      render json: @vacation
-    else
-      render json: @vacation.errors, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @vacation.update(vacation_params)
+  #     render json: @vacation
+  #   else
+  #     render json: @vacation.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # DELETE /vacations/1
-  def destroy
-    @vacation.destroy
-  end
+  # # DELETE /vacations/1
+  # def destroy
+  #   @vacation.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
