@@ -1,7 +1,9 @@
 class Vacation {
-    constructor(title, username) {
+    constructor(title, username, transportation, category) {
         this.title = title;
         this.username = username;
+        this.transportation = transportation;
+        this.category = category;
     }
 
     render () {

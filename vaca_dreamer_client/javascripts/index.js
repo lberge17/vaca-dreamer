@@ -90,6 +90,12 @@ function listenForm () {
         const transportation = document.querySelector('input[name="transportation"]').value;
 
         const formData = {title: title, username: username, category: category, transportation: transportation};
+        let classData = [];
+        for (let [key, value] of Object.entries(obj)) {
+            classData.push(value);
+        };
+        
+        renderVaca(classData);
         submitForm(formData);
     })
 }
@@ -113,4 +119,9 @@ function submitForm(data) {
             alert("post request failed. check console for error message.");
             console.log(error.message);
         });
+}
+
+function renderVaca(object) {
+    console.log(`new vaca: ${object}`);
+
 }
