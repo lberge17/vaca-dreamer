@@ -68,7 +68,12 @@ function loadForm() {
 
 function form () {
     let form = document.createElement('form');
-    form.innerHTML = "<label>Title:</label><input type='text' name='title'></input><br><label>Username:</label><input type='text' name='username'></input><br><input type='submit' class='submit-form'></input>";
+    let title = `<label>Title:</label><input type='text' name='title'></input>`
+    let username = `<label>Username:</label><input type='text' name='username'></input>`
+    let category = `<label>Category:</label><input type='text' name='category'></input>`
+    let transportation = `<label>Method of Transportation:</label><input type='text' name='transportation'></input>`
+    let submit = `<input type='submit' class='submit-form'></input>`
+    form.innerHTML = `${title}<br>${username}<br>${category}<br>${transportation}<br>${submit}`;
     return form;
 }
 
@@ -81,9 +86,31 @@ function listenForm () {
 
         const title = document.querySelector('input[name="title"]').value;
         const username = document.querySelector('input[name="username"]').value;
+        const category = document.querySelector('input[name="category"]').value;
+        const transportation = document.querySelector('input[name="transportation"]').value;
 
-        let p = document.createElement('p');
-        p.innerHTML = `${title} by ${username}`;
-        prntEl.appendChild(p);
+        const formData = {title: title, username: username, category: category, transportation: transportation};
+        submitForm(formData);
     })
+}
+
+function submitForm(data) {
+    const configObject = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(data)
+    };
+
+    fetch('http://localhost:3000/vacations', configObject)
+        .then(resp => resp.json())
+        .then(object => {
+            console.log(`data recieved: ${object}`);
+        })
+        .catch(function(error) {
+            alert("post request failed. check console for error message.");
+            console.log(error.message);
+        });
 }

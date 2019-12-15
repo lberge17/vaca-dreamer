@@ -46,6 +46,6 @@ class VacationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def vacation_params
-      params.fetch(:vacation, {})
+      params.fetch(:vacation, {}).permit(:title, :username, :transportation, :category)
     end
 end
