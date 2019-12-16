@@ -20,7 +20,7 @@ class VacationsController < ApplicationController
     if @vacation.save
       render json: @vacation, status: :created, location: @vacation
     else
-      render json: @vacation.errors, status: :unprocessable_entity
+      render json: { errors: @vacation.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

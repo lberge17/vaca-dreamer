@@ -90,12 +90,8 @@ function listenForm () {
         const transportation = document.querySelector('input[name="transportation"]').value;
 
         const formData = {title: title, username: username, category: category, transportation: transportation};
-        let classData = [];
-        for (let [key, value] of Object.entries(obj)) {
-            classData.push(value);
-        };
-        
-        renderVaca(classData);
+
+        renderVaca(formData);
         submitForm(formData);
     })
 }
@@ -113,7 +109,11 @@ function submitForm(data) {
     fetch('http://localhost:3000/vacations', configObject)
         .then(resp => resp.json())
         .then(object => {
-            console.log(`data recieved: ${object}`);
+            if (object.errors) {
+                renderErrors(object.errors);
+            } else {
+                console.log(object);
+            }
         })
         .catch(function(error) {
             alert("post request failed. check console for error message.");
@@ -123,5 +123,28 @@ function submitForm(data) {
 
 function renderVaca(object) {
     console.log(`new vaca: ${object}`);
+    const vaca = new Vacation(object);
+    refreshContent();
+    addButtons();
+    const div = document.createElement('div');
+    div.className = 'new-vacation';
+    div.innerHTML = vaca.render();
+    prntEl.appendChild(div);
+}
 
+function renderErrors(errorArray) {
+    let div = document.createElement('div');
+    div.className = 'error-div';
+    let p = document.createElement('p');
+    p.innerHTML = 'Sorry, the following errors prevented this vacation from being saved:'
+    div.appendChild(p);
+
+    errorArray.forEach(e => {
+        let p = document.createElement('p');
+        p.className = 'error';
+        p.innerHTML = e;
+        div.appendChild(p);
+    })
+
+    prntEl.appendChild(div);
 }
