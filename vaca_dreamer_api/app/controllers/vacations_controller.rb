@@ -10,7 +10,7 @@ class VacationsController < ApplicationController
 
   # GET /vacations/1
   def show
-    render json: @vacation
+    render json: @vacation, :include => {:stays => {:except => [:created_at, :updated_at]}, :activities => {:except => [:created_at, :updated_at]}}, :except => [:updated_at]
   end
 
   # POST /vacations
