@@ -5,5 +5,5 @@ class Vacation < ApplicationRecord
     validates :title, presence: true
     validates :username, presence: true
     validates :transportation, presence: true
-    validates :category, inclusion: { in: ['beach', 'family fun', 'romantic', 'nature', 'historic', 'large group'] }
+    validates :category, presence: true, inclusion: { in: ['beach', 'family fun', 'romantic', 'nature', 'historic', 'large group'] }
 end

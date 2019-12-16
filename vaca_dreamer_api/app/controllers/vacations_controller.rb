@@ -5,7 +5,7 @@ class VacationsController < ApplicationController
   def index
     @vacations = Vacation.all
 
-    render json: @vacations
+    render json: @vacations, :include => {:stays => {:except => [:created_at, :updated_at]}, :activities => {:except => [:created_at, :updated_at]}}, :except => [:updated_at]
   end
 
   # GET /vacations/1
