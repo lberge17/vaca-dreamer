@@ -5,6 +5,14 @@
     margin-bottom: 10px;
 }
 
+.plan-vaca, .create-vaca {
+    margin: 0px 10px 5px 10px;
+}
+
+button:hover {
+    border: 2px solid darkblue;
+}
+
 .cat {
     margin: 5px;
     width: 200px;
@@ -16,6 +24,12 @@
     /* in case the images don't load properly */
     background-color: lightblue;
     border: 5px solid lightblue;
+}
+
+.cat:hover {
+    font-size: xx-large;
+    text-shadow: 3px 3px black;
+    border: 5px solid darkblue;
 }
 
 .beach {
