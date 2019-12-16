@@ -100,6 +100,7 @@ function listenForm () {
         const actFam = !!document.querySelector(`input[name="activities_attributes['family_friendly']"]`).value;
 
         // snake cased because they're sent in that format to rails
+        // also the objects are stored in an array because of a bug I ran into that requires this for the api to reconize the object as a hash
         const stays_attributes = [{name: stayName, address: stayAddress, city: stayCity, state: stayState, cost: stayCost, family_friendly: stayFam}]
         const activities_attributes = [{title: actTitle, description: actDesc, address: actAdd, city: actCity, cost: actCost, family_friendly: actFam}]
 
