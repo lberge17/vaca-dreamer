@@ -1,5 +1,6 @@
 // this div is what we'll append all of the js generated html to...
-const prntEl = document.getElementById('parent-el')
+const prntEl = document.getElementById('parent-el');
+const errorField = document.getElementById('error-field');
 
 document.addEventListener("DOMContentLoaded", (e) => {
     console.log("DOM loaded");
@@ -202,18 +203,20 @@ function renderVaca(object) {
 }
 
 function renderErrors(errorArray) {
-    let div = document.createElement('div');
-    div.className = 'error-div';
+    alert('Invalid data entry: Vaca could not be saved');
+
     let p = document.createElement('p');
-    p.innerHTML = 'Sorry, the following errors prevented this vacation from being saved:'
-    div.appendChild(p);
+    p.innerHTML = 'Sorry, the following errors prevented this vacation from being saved:';
+    errorField.appendChild(p);
+
+    let errorList = document.createElement('ul');
 
     errorArray.forEach(e => {
-        let p = document.createElement('p');
-        p.className = 'error';
-        p.innerHTML = e;
-        div.appendChild(p);
+        let item = document.createElement('li');
+        item.className = 'error';
+        item.innerHTML = e;
+        errorList.appendChild(item);
     })
 
-    prntEl.appendChild(div);
+    errorField.appendChild(errorList);
 }
