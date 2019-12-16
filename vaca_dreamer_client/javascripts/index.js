@@ -25,6 +25,8 @@ function buttonEvent() {
     });
 }
 
+// start of the planner functions for rendering the info from the GET request to the API
+
 function loadPlanner() {
     console.log('loading planner');
     let div = document.createElement('div');
@@ -37,7 +39,30 @@ function loadPlanner() {
     div.appendChild(h3);
     div.appendChild(cats);
     prntEl.appendChild(div);
+
+    categoryEvents();
 }
+
+function categoryEvents() {
+    const cats = document.querySelectorAll('.cat');
+    cats.forEach(cat => {
+        cat.addEventListener('click', e => {
+            fetchVacasFromCat(e.target.className.split(' ')[1])
+        });
+    });
+}
+
+function fetchVacasFromCat(category) {
+    fetch(`http://localhost:3000/vacations?category=${category}`)
+        .then(resp => resp.json())
+        .then(obj => console.log(obj))
+        .catch(function(error) {
+            alert("post request failed. check console for error message.");
+            console.log(error.message);
+        });
+}
+
+// start of form functions for the POST request to API
 
 function loadForm() {
     console.log('loading form');
