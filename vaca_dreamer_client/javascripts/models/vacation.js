@@ -7,8 +7,6 @@ class Vacation {
     }
 
     static renderCategories() {
-        const cats = ['beach', 'family fun', 'romantic', 'group', 'nature', 'historic'];
-
         const colOne = `<button class="cat beach">Beach</button><br><button class="cat fam">Family Fun</button><br><button class="cat romantic">Romantic</button>`
         const colTwo =  `<button class="cat group">Large Group</button><br><button class="cat nature">Nature</button><br><button class="cat historic">Historic</button>`
 
@@ -18,6 +16,19 @@ class Vacation {
     }
 
     render () {
-        return `<p>Title: ${this.title}</p>`
+        let cardDiv = document.createElement('div');
+        cardDiv.className = 'card';
+        cardDiv.style.width = '18rem';
+        let body = document.createElement('div');
+        body.className = 'card-body';
+
+        body.innerHTML = `<h5>${this.title}</h5>`;
+        body.innerHTML += `<p class="card-text">by: ${this.username}</p>`;
+        body.innerHTML += `<p class="card-text">Category: ${this.category}</p>`;
+        body.innerHTML += `<p class="card-text">Transportation once there: ${this.transportation}</p>`;
+
+        cardDiv.appendChild(body);
+
+        return cardDiv;
     }
 }
