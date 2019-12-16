@@ -132,25 +132,32 @@ function listenSubmit () {
         const transportation = document.querySelector('input[name="transportation"]').value;
 
         // stay attributes
-        const stayName = document.querySelector(`input[name="stays_attributes['name']"]`).value;
-        const stayAddress = document.querySelector(`input[name="stays_attributes['address']"]`).value;
-        const stayCity = document.querySelector(`input[name="stays_attributes['city']"]`).value;
-        const stayState = document.querySelector(`input[name="stays_attributes['state']"]`).value;
-        const stayCost = document.querySelector(`input[name="stays_attributes['cost']"]`).value;
-        const stayFam = !!document.querySelector(`input[name="stays_attributes['family_friendly']"]`).value;
+        const stayNames = document.querySelectorAll(`input[name="stays_attributes['name']"]`);
+        const stayAddresses = document.querySelectorAll(`input[name="stays_attributes['address']"]`);
+        const stayCities = document.querySelectorAll(`input[name="stays_attributes['city']"]`);
+        const stayStates = document.querySelectorAll(`input[name="stays_attributes['state']"]`);
+        const stayCosts = document.querySelectorAll(`input[name="stays_attributes['cost']"]`);
+        const stayFams = document.querySelectorAll(`input[name="stays_attributes['family_friendly']"]`);
 
         // activity attributes
-        const actTitle = document.querySelector(`input[name="activities_attributes['title']"]`).value;
-        const actDesc = document.querySelector(`textarea[name="activities_attributes['description']"]`).value;
-        const actAdd = document.querySelector(`input[name="activities_attributes['address']"]`).value;
-        const actCity = document.querySelector(`input[name="activities_attributes['city']"]`).value;
-        const actCost = document.querySelector(`input[name="activities_attributes['cost']"]`).value;
-        const actFam = !!document.querySelector(`input[name="activities_attributes['family_friendly']"]`).value;
+        const actTitles = document.querySelectorAll(`input[name="activities_attributes['title']"]`);
+        const actDescs = document.querySelectorAll(`textarea[name="activities_attributes['description']"]`);
+        const actAdds = document.querySelectorAll(`input[name="activities_attributes['address']"]`);
+        const actCities = document.querySelectorAll(`input[name="activities_attributes['city']"]`);
+        const actCosts = document.querySelectorAll(`input[name="activities_attributes['cost']"]`);
+        const actFams = document.querySelectorAll(`input[name="activities_attributes['family_friendly']"]`);
 
         // snake cased because they're sent in that format to rails
         // also the objects are stored in an array because of a bug I ran into that requires this for the api to reconize the object as a hash
-        const stays_attributes = [{name: stayName, address: stayAddress, city: stayCity, state: stayState, cost: stayCost, family_friendly: stayFam}]
-        const activities_attributes = [{title: actTitle, description: actDesc, address: actAdd, city: actCity, cost: actCost, family_friendly: actFam}]
+        let stays_attributes = []
+        for(let i = 0; i < stayNames.length; i++) {
+            stays_attributes.push({name: stayNames[i].value, address: stayAddresses[i].value, city: stayCities[i].value, state: stayStates[i].value, cost: stayCosts[i].value, family_friendly: !!stayFams[i].value})
+        }
+
+        let activities_attributes = []
+        for(let i = 0; i < actTitles.length; i++) {
+            activities_attributes.push({title: actTitles[i].value, description: actDescs[i].value, address: actAdds[i].value, city: actCities[i].value, cost: actCosts[i].value, family_friendly: !!actFams[i].value})
+        }
 
         const formData = {title: title, username: username, category: category, transportation: transportation, stays_attributes, activities_attributes};
 

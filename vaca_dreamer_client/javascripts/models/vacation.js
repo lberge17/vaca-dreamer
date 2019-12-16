@@ -5,8 +5,8 @@ class Vacation {
         this.username = object.username;
         this.category = object.category;
         this.transportation = object.transportation;
-        this.activities = object.activities;
-        this.stays = object.stays;
+        this.activities = object.activities_attributes;
+        this.stays = object.stays_attributes;
     }
 
     static renderCategories() {
