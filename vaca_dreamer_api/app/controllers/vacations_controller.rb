@@ -10,7 +10,11 @@ class VacationsController < ApplicationController
 
   # GET /vacations/1
   def show
-    render json: @vacation, :include => {:stays => {:except => [:created_at, :updated_at]}, :activities => {:except => [:created_at, :updated_at]}}, :except => [:updated_at]
+    if @vacation
+      render json: @vacation, :include => {:stays => {:except => [:created_at, :updated_at]}, :activities => {:except => [:created_at, :updated_at]}}, :except => [:updated_at]
+    else
+      render json: {error: "Record not found with that id."}
+    end
   end
 
   # POST /vacations
@@ -41,7 +45,7 @@ class VacationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_vacation
-      @vacation = Vacation.find(params[:id])
+      @vacation = Vacation.find_by(id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
