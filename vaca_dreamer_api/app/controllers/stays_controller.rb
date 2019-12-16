@@ -5,12 +5,16 @@ class StaysController < ApplicationController
   def index
     @stays = Stay.all
 
-    render json: @stays
+    render json: @stays, :except => [:updated_at]
   end
 
   # GET /stays/1
   def show
-    render json: @stay
+    if @stay
+      render json: @stay, :except => [:updated_at]
+    else
+      render json: {error: 'Record not found with that id.'}
+    end
   end
 
   # POST /stays
@@ -41,7 +45,7 @@ class StaysController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_stay
-      @stay = Stay.find(params[:id])
+      @stay = Stay.find_by(id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

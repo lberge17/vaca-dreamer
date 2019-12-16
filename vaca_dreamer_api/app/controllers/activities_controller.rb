@@ -5,12 +5,16 @@ class ActivitiesController < ApplicationController
   def index
     @activities = Activity.all
 
-    render json: @activities
+    render json: @activities, :except => [:updated_at]
   end
 
   # GET /activities/1
   def show
-    render json: @activity
+    if @activity
+      render json: @activity, :except => [:updated_at]
+    else
+      render json: {error: 'Record not found with that id.'}
+    end
   end
 
   # POST /activities
@@ -41,7 +45,7 @@ class ActivitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_activity
-      @activity = Activity.find(params[:id])
+      @activity = Activity.find_by(id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
