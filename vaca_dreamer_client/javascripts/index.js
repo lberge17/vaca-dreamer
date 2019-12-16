@@ -55,11 +55,27 @@ function categoryEvents() {
 function fetchVacasFromCat(category) {
     fetch(`http://localhost:3000/vacations?category=${category}`)
         .then(resp => resp.json())
-        .then(obj => console.log(obj))
+        .then(obj => {
+            console.log(obj);
+            if(obj.length > 0) {
+                renderVacas(obj);
+            } else {
+                prntEl.innerHTML = "Sorry, there are currently no dream vacations saved in that category...Maybe you can create one!"
+            }
+        })
         .catch(function(error) {
             alert("post request failed. check console for error message.");
             console.log(error.message);
         });
+}
+
+function renderVacas(vacas) {
+    refreshContent();
+    vacas.forEach(vaca => {
+        const vacation  = new Vacation(vaca);
+        const vacaHTML = vacation.render();
+        prntEl.appendChild(vacaHTML);
+    })
 }
 
 // start of form functions for the POST request to API
@@ -74,14 +90,35 @@ function loadForm() {
     div.appendChild(h3);
     div.appendChild(form());
     prntEl.appendChild(div);
-    listenForm();
+    listenAdd();
+    listenSubmit();
 }
 
 function form () {
-    return new Form().render()
+    return Form.render();
 }
 
-function listenForm () {
+function listenAdd () {
+    const actBtn = document.getElementById('activity-btn');
+    const stayBtn = document.getElementById('stay-btn');
+
+    const actFieldDiv = document.querySelector('.activity-form');
+    const stayFieldDiv = document.querySelector('.stay-form');
+
+    actBtn.addEventListener('click', e => {
+        e.preventDefault();
+        console.log('adding activity field');
+        actFieldDiv.innerHTML += Form.activityDivFields();
+    })
+
+    stayBtn.addEventListener('click', e => {
+        e.preventDefault();
+        console.log('adding stay field');
+        stayFieldDiv.innerHTML += Form.stayDivFields();
+    })
+}
+
+function listenSubmit () {
     let submit = document.querySelector('.submit-form')
 
     submit.addEventListener("click", (e) => {

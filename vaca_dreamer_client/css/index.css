@@ -55,3 +55,14 @@ button:hover {
 .historic {
     background-image: url('../images/historic-image.jpg');
 }
+
+.card {
+    float: left;
+    margin: 5px;
+    padding: 5px;
+}
+
+#activity-btn, #stay-btn {
+    font-size: small;
+    margin-bottom: 10px;
+}
