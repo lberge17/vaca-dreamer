@@ -77,12 +77,33 @@ function listenForm () {
         e.preventDefault();
         console.log(e);
 
+        // vacation attributes
         const title = document.querySelector('input[name="title"]').value;
         const username = document.querySelector('input[name="username"]').value;
         const category = document.querySelector('input[name="category"]').value;
         const transportation = document.querySelector('input[name="transportation"]').value;
 
-        const formData = {title: title, username: username, category: category, transportation: transportation};
+        // stay attributes
+        const stayName = document.querySelector(`input[name="stays_attributes['name']"]`).value;
+        const stayAddress = document.querySelector(`input[name="stays_attributes['address']"]`).value;
+        const stayCity = document.querySelector(`input[name="stays_attributes['city']"]`).value;
+        const stayState = document.querySelector(`input[name="stays_attributes['state']"]`).value;
+        const stayCost = document.querySelector(`input[name="stays_attributes['cost']"]`).value;
+        const stayFam = !!document.querySelector(`input[name="stays_attributes['family_friendly']"]`).value;
+
+        // activity attributes
+        const actTitle = document.querySelector(`input[name="activities_attributes['title']"]`).value;
+        const actDesc = document.querySelector(`textarea[name="activities_attributes['description']"]`).value;
+        const actAdd = document.querySelector(`input[name="activities_attributes['address']"]`).value;
+        const actCity = document.querySelector(`input[name="activities_attributes['city']"]`).value;
+        const actCost = document.querySelector(`input[name="activities_attributes['cost']"]`).value;
+        const actFam = !!document.querySelector(`input[name="activities_attributes['family_friendly']"]`).value;
+
+        // snake cased because they're sent in that format to rails
+        const stays_attributes = [{name: stayName, address: stayAddress, city: stayCity, state: stayState, cost: stayCost, family_friendly: stayFam}]
+        const activities_attributes = [{title: actTitle, description: actDesc, address: actAdd, city: actCity, cost: actCost, family_friendly: actFam}]
+
+        const formData = {title: title, username: username, category: category, transportation: transportation, stays_attributes, activities_attributes};
 
         renderVaca(formData);
         submitForm(formData);
@@ -115,7 +136,7 @@ function submitForm(data) {
 }
 
 function renderVaca(object) {
-    console.log(`new vaca: ${object}`);
+    console.log(object);
     const vaca = new Vacation(object);
     refreshContent();
     addButtons();

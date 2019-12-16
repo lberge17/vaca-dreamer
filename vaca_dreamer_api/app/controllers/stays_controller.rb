@@ -50,6 +50,6 @@ class StaysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def stay_params
-      params.fetch(:stay, {})
+      params.fetch(:stay, {}).permit(:name, :address, :city, :state, :cost, :family_friendly)
     end
 end
