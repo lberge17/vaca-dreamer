@@ -197,7 +197,7 @@ function renderVaca(object) {
     refreshContent();
     const div = document.createElement('div');
     div.className = 'new-vacation';
-    div.innerHTML = vaca.render();
+    div.appendChild(vaca.render());
     prntEl.appendChild(div);
 }
 

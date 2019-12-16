@@ -5,8 +5,10 @@ class Vacation {
         this.username = object.username;
         this.category = object.category;
         this.transportation = object.transportation;
-        this.activities = object.activities_attributes;
-        this.stays = object.stays_attributes;
+
+        // the camel cased key comes from the object being sent to the api. the plain key comes from the response of the api.
+        this.activities = object.activities_attributes || object.activities;
+        this.stays = object.stays_attributes || object.stays;
     }
 
     static renderCategories() {
