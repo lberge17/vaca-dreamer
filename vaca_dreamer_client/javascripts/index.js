@@ -3,41 +3,24 @@ const prntEl = document.getElementById('parent-el')
 
 document.addEventListener("DOMContentLoaded", (e) => {
     console.log("DOM loaded");
-    addButtons();
+    buttonEvent();
 })
 
 function refreshContent () {
     prntEl.innerHTML = "";
 }
 
-function addButtons () {
-    console.log('adding buttons');
-    let div = document.createElement('div');
-    div.className = 'buttons text-center';
-    let plan = document.createElement('button');
-    plan.className = "plan";
-    plan.innerHTML = "Get Vaca Inspiration";
-    let create = document.createElement('button');
-    create.className = "create-vaca";
-    create.innerHTML = "Create New Vaca";
-
-    div.appendChild(plan);
-    div.appendChild(create);
-    prntEl.appendChild(div);
-
-    buttonEvent(plan, create);
-}
-
-function buttonEvent(plan, create) {
+function buttonEvent() {
     console.log('adding button events');
+    const plan = document.querySelector(".plan-vaca");
+    const create = document.querySelector(".create-vaca");
+
     plan.addEventListener("click", (e) => {
         refreshContent();
-        addButtons();
         loadPlanner();
     });
     create.addEventListener("click", (e) => {
         refreshContent();
-        addButtons();
         loadForm();
     });
 }
@@ -143,7 +126,6 @@ function renderVaca(object) {
     console.log(object);
     const vaca = new Vacation(object);
     refreshContent();
-    addButtons();
     const div = document.createElement('div');
     div.className = 'new-vacation';
     div.innerHTML = vaca.render();
