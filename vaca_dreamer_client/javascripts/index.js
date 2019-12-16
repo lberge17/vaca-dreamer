@@ -13,7 +13,7 @@ function refreshContent () {
 function addButtons () {
     console.log('adding buttons');
     let div = document.createElement('div');
-    div.className = 'buttons center';
+    div.className = 'buttons text-center';
     let plan = document.createElement('button');
     plan.className = "plan";
     plan.innerHTML = "Get Vaca Inspiration";
@@ -45,18 +45,21 @@ function buttonEvent(plan, create) {
 function loadPlanner() {
     console.log('loading planner');
     let div = document.createElement('div');
-    div.className = "planner container center";
+    div.className = "planner container text-center";
     let h3 = document.createElement('h3');
     h3.innerHTML = "What type of vaca would you like to take?";
+    let cats = document.createElement('div');
+    cats.innerHTML = Vacation.renderCategories();
 
     div.appendChild(h3);
+    div.appendChild(cats);
     prntEl.appendChild(div);
 }
 
 function loadForm() {
     console.log('loading form');
     let div = document.createElement('div');
-    div.className = "form container center";
+    div.className = "form container text-center";
     let h3 = document.createElement('h3');
     h3.innerHTML = "Submit the form below to add a new dream vaca to our collection!";
 

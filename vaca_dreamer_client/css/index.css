@@ -1,3 +1,43 @@
-.center {
-    text-align: center;
+.welcome {
+    background-color: lightblue;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.cat {
+    margin: 5px;
+    width: 200px;
+    height: 200px;
+    color: white;
+    font-weight: 600;
+    font-size: x-large;
+    text-shadow: 2px 2px black;
+    /* in case the images don't load properly */
+    background-color: lightblue;
+    border: 5px solid lightblue;
+}
+
+.beach {
+    background-image: url('../images/beach-image.jpg');
+}
+
+.group {
+    background-image: url('../images/group-image.jpg');
+}
+
+.fam {
+    background-image: url('../images/fair-image.jpg');
+}
+
+.nature {
+    background-image: url('../images/nature-image.jpg');
+}
+
+.romantic {
+    background-image: url('../images/roses-image.jpg');
+}
+
+.historic {
+    background-image: url('../images/historic-image.jpg');
 }
