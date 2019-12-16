@@ -67,14 +67,7 @@ function loadForm() {
 }
 
 function form () {
-    let form = document.createElement('form');
-    let title = `<label>Title:</label><input type='text' name='title'></input>`
-    let username = `<label>Username:</label><input type='text' name='username'></input>`
-    let category = `<label>Category:</label><input type='text' name='category'></input>`
-    let transportation = `<label>Method of Transportation:</label><input type='text' name='transportation'></input>`
-    let submit = `<input type='submit' class='submit-form'></input>`
-    form.innerHTML = `${title}<br>${username}<br>${category}<br>${transportation}<br>${submit}`;
-    return form;
+    return new Form().render()
 }
 
 function listenForm () {
