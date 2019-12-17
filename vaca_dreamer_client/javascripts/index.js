@@ -172,6 +172,7 @@ function listenSubmit () {
         const stayAddresses = document.querySelectorAll(`input[name="stays_attributes['address']"]`);
         const stayCities = document.querySelectorAll(`input[name="stays_attributes['city']"]`);
         const stayStates = document.querySelectorAll(`input[name="stays_attributes['state']"]`);
+        const stayCountries = document.querySelectorAll(`input[name="stays_attributes['country']"]`);
         const stayCosts = document.querySelectorAll(`input[name="stays_attributes['cost']"]`);
         const stayFams = document.querySelectorAll(`input[name="stays_attributes['family_friendly']"]`);
 
@@ -187,7 +188,7 @@ function listenSubmit () {
         // also the objects are stored in an array because of a bug I ran into that requires this for the api to reconize the object as a hash
         let stays_attributes = []
         for(let i = 0; i < stayNames.length; i++) {
-            stays_attributes.push({name: stayNames[i].value, address: stayAddresses[i].value, city: stayCities[i].value, state: stayStates[i].value, cost: stayCosts[i].value, family_friendly: stayFams[i].checked})
+            stays_attributes.push({name: stayNames[i].value, address: stayAddresses[i].value, city: stayCities[i].value, state: stayStates[i].value, country: stayCountries[i].value, cost: stayCosts[i].value, family_friendly: stayFams[i].checked})
         }
 
         let activities_attributes = []

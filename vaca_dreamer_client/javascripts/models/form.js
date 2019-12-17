@@ -20,9 +20,10 @@ class Form {
         let address = `<label>Address:</label><input type='text' name="stays_attributes['address']"></input><br>`;
         let city = `<label>City:</label><input type='text' name="stays_attributes['city']"></input><br>`;
         let state = `<label>State:</label><input type='text' name="stays_attributes['state']"></input><br>`;
+        let country = `<label>Country:</label><input type='text' name="stays_attributes['country']"></input><br>`;
         let cost = `<label>Cost ($, $$, $$$, $$$$, $$$$$, or N/A):</label><input type='text' name="stays_attributes['cost']"></input><br>`;
         let familyFriendly = `<label>Family Friendly?</label><input type='checkbox' name="stays_attributes['family_friendly']"></input><br><br>`;
-        return heading + name + address + city + state + cost + familyFriendly;
+        return heading + name + address + city + state + country + cost + familyFriendly;
     }
 
     static activityDivFields() {
