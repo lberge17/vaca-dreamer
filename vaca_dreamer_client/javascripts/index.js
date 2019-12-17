@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 function refreshContent () {
     prntEl.innerHTML = "";
+    errorField.innerHTML = "";
 }
 
 function buttonEvent() {
