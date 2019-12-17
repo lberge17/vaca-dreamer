@@ -37,10 +37,10 @@ class ActivitiesController < ApplicationController
   #   end
   # end
 
-  # # DELETE /activities/1
-  # def destroy
-  #   @activity.destroy
-  # end
+  # DELETE /activities/1
+  def destroy
+    @activity.destroy
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

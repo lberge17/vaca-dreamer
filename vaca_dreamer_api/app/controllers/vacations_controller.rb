@@ -41,10 +41,14 @@ class VacationsController < ApplicationController
   #   end
   # end
 
-  # # DELETE /vacations/1
-  # def destroy
-  #   @vacation.destroy
-  # end
+  # DELETE /vacations/1
+  def destroy
+    if (@vacation.stays.destroy_all && @vacation.activities.destroy_all && @vacation.destroy)
+      render json: {message: 'vacation was successfully deleted'}
+    else
+      render json: {error: 'vacation failed to delete'}
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

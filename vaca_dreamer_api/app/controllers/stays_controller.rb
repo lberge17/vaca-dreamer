@@ -37,10 +37,10 @@ class StaysController < ApplicationController
   #   end
   # end
 
-  # # DELETE /stays/1
-  # def destroy
-  #   @stay.destroy
-  # end
+  # DELETE /stays/1
+  def destroy
+    @stay.destroy
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

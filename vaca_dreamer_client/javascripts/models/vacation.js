@@ -36,7 +36,7 @@ class Vacation {
         activities.className = 'col-sm';
 
 
-        vaca.innerHTML = `<h5>${this.title}</h5>`;
+        vaca.innerHTML = `<h5>${this.title} <button class='delete-btn text-danger' id=${this.id}>X</button></h5>`;
         vaca.innerHTML += `<p class="card-text">by: ${this.username}</p>`;
         vaca.innerHTML += `<p class="card-text">Category: ${this.category}</p>`;
         vaca.innerHTML += `<p class="card-text">Transportation once there: ${this.transportation}</p>`;

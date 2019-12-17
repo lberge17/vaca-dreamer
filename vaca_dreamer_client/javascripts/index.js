@@ -78,6 +78,40 @@ function renderVacas(vacas) {
         const vacaHTML = vacation.render();
         prntEl.appendChild(vacaHTML);
     })
+    listenX();
+}
+
+// functions to delete a vaca via a delete request to api
+
+function listenX() {
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    deleteButtons.forEach(e => {
+        e.addEventListener('click', e => {
+            e.preventDefault();
+            deleteVaca(e.target.id);
+            removeVaca(e.target.parentElement.parentElement.parentElement.parentElement);
+        })
+    })
+}
+
+function deleteVaca(id) {
+    fetch(`http://localhost:3000/vacations/${id}`, { method: 'DELETE' })
+        .then(resp => resp.json())
+        .then(obj => {
+            console.log(obj);
+            alert('vacation was deleted');
+            return obj;
+        })
+        .catch(error => {
+            alert("delete request failed. check console for error message.");
+            console.log(error.message);
+        })
+}
+
+function removeVaca(card) {
+    card.innerHTML = "";
+    card.className = "";
+    card.style.width = "";
 }
 
 // start of form functions for the POST request to API
@@ -153,12 +187,12 @@ function listenSubmit () {
         // also the objects are stored in an array because of a bug I ran into that requires this for the api to reconize the object as a hash
         let stays_attributes = []
         for(let i = 0; i < stayNames.length; i++) {
-            stays_attributes.push({name: stayNames[i].value, address: stayAddresses[i].value, city: stayCities[i].value, state: stayStates[i].value, cost: stayCosts[i].value, family_friendly: !!stayFams[i].value})
+            stays_attributes.push({name: stayNames[i].value, address: stayAddresses[i].value, city: stayCities[i].value, state: stayStates[i].value, cost: stayCosts[i].value, family_friendly: stayFams[i].checked})
         }
 
         let activities_attributes = []
         for(let i = 0; i < actTitles.length; i++) {
-            activities_attributes.push({title: actTitles[i].value, description: actDescs[i].value, address: actAdds[i].value, city: actCities[i].value, cost: actCosts[i].value, family_friendly: !!actFams[i].value})
+            activities_attributes.push({title: actTitles[i].value, description: actDescs[i].value, address: actAdds[i].value, city: actCities[i].value, cost: actCosts[i].value, family_friendly: actFams[i].checked})
         }
 
         const formData = {title: title, username: username, category: category, transportation: transportation, stays_attributes, activities_attributes};
