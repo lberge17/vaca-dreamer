@@ -49,7 +49,15 @@ function categoryEvents() {
     const cats = document.querySelectorAll('.cat');
     cats.forEach(cat => {
         cat.addEventListener('click', e => {
-            fetchVacasFromCat(e.target.className.split(' ')[1])
+            let category = e.target.className.split(' ');
+
+            if (category.length > 2) {
+                category = category.splice(1).join('%20');
+            } else {
+                category = category[1];
+            }
+            
+            fetchVacasFromCat(category);
         });
     });
 }
@@ -122,8 +130,11 @@ function loadForm() {
     div.className = "form container text-center";
     let h3 = document.createElement('h3');
     h3.innerHTML = "Submit the form below to add a new dream vaca to our collection!";
+    let note = document.createElement('small');
+    note.innerText = "Note: the transportaion field is to let people know the most convenient way to get around the location once they've arrived (ie. public transport, train, rental car, taxi, walking, etc.).";
 
     div.appendChild(h3);
+    div.appendChild(note);
     div.appendChild(form());
     prntEl.appendChild(div);
     listenAdd();
@@ -173,7 +184,7 @@ function listenSubmit () {
         const stayCities = document.querySelectorAll(`input[name="stays_attributes['city']"]`);
         const stayStates = document.querySelectorAll(`input[name="stays_attributes['state']"]`);
         const stayCountries = document.querySelectorAll(`input[name="stays_attributes['country']"]`);
-        const stayCosts = document.querySelectorAll(`input[name="stays_attributes['cost']"]`);
+        const stayCosts = document.querySelectorAll(`select[name="stays_attributes['cost']"]`);
         const stayFams = document.querySelectorAll(`input[name="stays_attributes['family_friendly']"]`);
 
         // activity attributes
@@ -181,11 +192,10 @@ function listenSubmit () {
         const actDescs = document.querySelectorAll(`textarea[name="activities_attributes['description']"]`);
         const actAdds = document.querySelectorAll(`input[name="activities_attributes['address']"]`);
         const actCities = document.querySelectorAll(`input[name="activities_attributes['city']"]`);
-        const actCosts = document.querySelectorAll(`input[name="activities_attributes['cost']"]`);
+        const actCosts = document.querySelectorAll(`select[name="activities_attributes['cost']"]`);
         const actFams = document.querySelectorAll(`input[name="activities_attributes['family_friendly']"]`);
 
         // snake cased because they're sent in that format to rails
-        // also the objects are stored in an array because of a bug I ran into that requires this for the api to reconize the object as a hash
         let stays_attributes = []
         for(let i = 0; i < stayNames.length; i++) {
             stays_attributes.push({name: stayNames[i].value, address: stayAddresses[i].value, city: stayCities[i].value, state: stayStates[i].value, country: stayCountries[i].value, cost: stayCosts[i].value, family_friendly: stayFams[i].checked})

@@ -13,6 +13,10 @@ class Form {
         return vacaDiv;
     }
 
+    static costOptions() {
+        return `<option value='$'>$</option><option value='$$'>$$</option><option value='$$$'>$$$</option><option value='$$$$'>$$$$</option><option value='$$$$$'>$$$$$</option><option value='N/A'>N/A</option>`
+    }
+
     static stayDivFields() {
         // part of form that contains stay attributes
         let heading = `<h4>Add a stay (hotel, campsite, etc.):</h4>`
@@ -21,7 +25,7 @@ class Form {
         let city = `<label>City:</label><input type='text' name="stays_attributes['city']"></input><br>`;
         let state = `<label>State:</label><input type='text' name="stays_attributes['state']"></input><br>`;
         let country = `<label>Country:</label><input type='text' name="stays_attributes['country']"></input><br>`;
-        let cost = `<label>Cost ($, $$, $$$, $$$$, $$$$$, or N/A):</label><input type='text' name="stays_attributes['cost']"></input><br>`;
+        let cost = `<label>Cost:</label><select name="stays_attributes['cost']">${this.costOptions()}</select><br>`;
         let familyFriendly = `<label>Family Friendly?</label><input type='checkbox' name="stays_attributes['family_friendly']"></input><br><br>`;
         return heading + name + address + city + state + country + cost + familyFriendly;
     }
@@ -33,7 +37,7 @@ class Form {
         let description = `<label>Description:</label><textarea name="activities_attributes['description']"></textarea><br>`;
         let address = `<label>Address:</label><input type='text' name="activities_attributes['address']"></input><br>`;
         let city = `<label>City:</label><input type='text' name="activities_attributes['city']"></input><br>`;
-        let cost = `<label>Cost ($, $$, $$$, $$$$, $$$$$, or N/A):</label><input type='text' name="activities_attributes['cost']"></input><br>`;
+        let cost = `<label>Cost:</label><select name="activities_attributes['cost']">${this.costOptions()}</select><br>`;
         let familyFriendly = `<label>Family Friendly?</label><input type='checkbox' name="activities_attributes['family_friendly']"></input><br><br>`;
         return heading + title + description + address + city + cost + familyFriendly;
     }

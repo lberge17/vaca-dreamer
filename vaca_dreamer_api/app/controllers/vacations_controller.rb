@@ -8,7 +8,7 @@ class VacationsController < ApplicationController
     else
       @vacations = Vacation.all
     end
-
+    
     render json: @vacations, :include => {:stays => {:except => [:created_at, :updated_at]}, :activities => {:except => [:created_at, :updated_at]}}, :except => [:updated_at]
   end
 
