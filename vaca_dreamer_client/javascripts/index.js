@@ -164,7 +164,7 @@ function listenSubmit () {
         // vacation attributes
         const title = document.querySelector('input[name="title"]').value;
         const username = document.querySelector('input[name="username"]').value;
-        const category = document.querySelector('input[name="category"]').value;
+        const category = document.querySelector('select[name="category"]').value;
         const transportation = document.querySelector('input[name="transportation"]').value;
 
         // stay attributes

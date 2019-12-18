@@ -6,7 +6,7 @@ class Form {
         let heading = `<h4>Create new Dream Vaca:</h4>`;
         let title = `<label>Title:</label><input type='text' name='title'></input><br>`;
         let username = `<label>Username:</label><input type='text' name='username'></input><br>`;
-        let category = `<label>Category:</label><input type='text' name='category'></input><br>`;
+        let category = `<label>Category:</label><select name="category"><option value="beach">beach</option><option value="family fun">family fun</option><option value="romantic">romantic</option><option value="nature">nature</option><option value="large group">large group</option><option value="historic">historic</option></select><br>`;
         let transportation = `<label>Method of Transportation:</label><input type='text' name='transportation'></input><br><br>`;
         vacaDiv.innerHTML = heading + title + username + category + transportation;
 
