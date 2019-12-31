@@ -12,8 +12,8 @@ class Vacation {
     }
 
     static renderCategories() {
-        const colOne = `<button class="cat beach">Beach</button><br><button class="cat family fun">Family Fun</button><br><button class="cat romantic">Romantic</button>`
-        const colTwo =  `<button class="cat large group">Large Group</button><br><button class="cat nature">Nature</button><br><button class="cat historic">Historic</button>`
+        const colOne = `<button class="cat beach">Beach</button><br><button class="cat family">Family Fun</button><br><button class="cat romantic">Romantic</button>`
+        const colTwo =  `<button class="cat group">Large Group</button><br><button class="cat nature">Nature</button><br><button class="cat historic">Historic</button>`
 
         let div = `<div class="container"><div class="row"><div class="col-sm">${colOne}</div><div class="col-sm">${colTwo}</div></div></div>`;
 

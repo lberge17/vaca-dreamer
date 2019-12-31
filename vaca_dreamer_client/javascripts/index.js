@@ -49,20 +49,15 @@ function categoryEvents() {
     const cats = document.querySelectorAll('.cat');
     cats.forEach(cat => {
         cat.addEventListener('click', e => {
-            let category = e.target.className.split(' ');
-
-            if (category.length > 2) {
-                category = category.splice(1).join('%20');
-            } else {
-                category = category[1];
-            }
-            
+            const category = e.target.className.split(' ')[1];
             fetchVacasFromCat(category);
         });
     });
 }
 
 function fetchVacasFromCat(category) {
+    console.log(category);
+
     fetch(`http://localhost:3000/vacations?category=${category}`)
         .then(resp => resp.json())
         .then(obj => {

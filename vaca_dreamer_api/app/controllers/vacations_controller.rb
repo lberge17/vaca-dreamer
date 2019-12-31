@@ -4,7 +4,13 @@ class VacationsController < ApplicationController
   # GET /vacations
   def index
     if params[:category]
-      @vacations = Vacation.where(category: params[:category])
+      cat = params[:category]
+      if cat == 'group'
+        cat = 'large group'
+      elsif cat == 'family'
+        cat = 'family fun'
+      end
+      @vacations = Vacation.where(category: cat)
     else
       @vacations = Vacation.all
     end
